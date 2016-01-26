@@ -1,0 +1,20 @@
+<div  ng-controller="loginCtrl">
+    <div class="bg-header-color text-center font-twenty page-px" >
+        中田财务收支明细
+    </div>
+    <div class="bg-color widthdf">
+        <div class="text-center divclstt">
+            <form action="">
+                <div  class="input-user "> <input class="font-rg" type="text" ng-model="user.username" placeholder="用户名"/></div>
+                <div  class="input-user"> <input class="font-rg" type="password" ng-model="user.password" placeholder="密码"/></div>
+                <div  class="input-user"> <input type="submit" class="font-fity button-bg" ng-click="login()" value="登录"/></div>
+            </form>
+            <div><button ng-click="getCookieinfo()"></button></div>
+            <div><button ng-click="removeCookieinfo()"></button></div>
+        </div>
+
+
+
+    </div>
+</div>
+

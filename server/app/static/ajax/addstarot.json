@@ -1,0 +1,16 @@
+[
+    {
+        "sid": 1,
+        "holder": "hxy",
+        "storename": "USA"
+    },
+    {
+        "sid": 2,
+        "holder": [
+            "hxy",
+            "xiaolei",
+            "gary"
+        ],
+        "storename": "Japan"
+    }
+]

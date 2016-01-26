@@ -1,0 +1,19 @@
+{
+  "storelist": [
+    {
+      "holder": "\u80a1\u4e1c\u4e00;\u80a1\u4e1c\u4e8c",
+      "id": 1,
+      "storename": "\u95e8\u5e971"
+    },
+    {
+      "holder": "\u80a1\u4e1c\u4e09;\u80a1\u4e1c\u56db",
+      "id": 2,
+      "storename": "\u95e8\u5e972"
+    },
+    {
+      "holder": "\u80a1\u4e1c5;\u80a1\u4e1c6",
+      "id": 3,
+      "storename": "\u95e8\u5e973"
+    }
+  ]
+}

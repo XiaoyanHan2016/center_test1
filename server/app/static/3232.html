@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="plugin/bootstrap.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <script src="plugin/angular.js"></script>
+    <script src="plugin/angular-ui-router.js"></script>
+    <script src="plugin/angular-cookies.js"></script>
+    <script src="js/store-app.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="formCtrl">
+    <form  ng-submit="save()">
+        First Name:<br>
+
+        <input type="text" ng-model="user.firstName"><br>
+        Last Name:<br>
+        <input type="text" ptkfj="hhg" ng-model="user.lastName">
+        <br><br>
+        <button ng-click="reset()">RESET</button>
+        <input type="submit" value="提交"/>
+    </form>
+    <livebit name="e" age="w"></livebit>
+    <p>form = {{user}}</p>
+    <p>master = {{master}}</p>
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    var po="";
+    app.directive('ptkfj', function() {
+        return {
+            restrict: 'A',
+            link:function(scope, elm, attrs){
+               return attrs.name;
+            }
+        };
+    });
+    console.log(po);
+    app.controller('formCtrl',function ($scope,$log,$http) {
+        $scope.master = {firstName: "John", lastName: "Doe"};
+        $scope.reset = function() {
+            $scope.user = angular.copy($scope.master);
+
+        };
+
+        $scope.reset();
+        $scope.save=function(){
+            $scope.formData={user:$scope.user}
+            $http({
+                method  : 'POST',
+                url     : "http://localhost:63342/ZTApp/ajax/login.json",
+                data    : $.param($scope.formData),  // pass in data as strings
+                headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+            })
+                    .success(function(data) {
+                        $log.info(data);
+
+                        if (!data.success) {
+                            // if not successful, bind errors to error variables
+                            $scope.errorName = data.errors.name;
+                            $scope.errorSuperhero = data.errors.superheroAlias;
+                        } else {
+                            // if successful, bind success message to message
+                            $log.info(data);
+                        }
+                    });
+        }
+
+    });
+</script>
+</body>
+</html>

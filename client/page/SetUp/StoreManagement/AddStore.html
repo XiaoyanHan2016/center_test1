@@ -1,0 +1,42 @@
+
+<div  ng-controller="loginCtrl">
+    <div class="bg-header-color text-center font-twenty page-px" >
+        <div class="container replayt cotjdf">
+            <a class="claf " href="javascript:;">
+                中田财务收支明细
+            </a>
+            <a class="polat" href="javascript:;">退出</a>
+        </div>
+    </div>
+    <div class="backtd">
+        <div class="container cotjdf1">
+            <ul class="ultla">
+                <li><a ng-click="Accountent()" href="javascript:;">入账</a></li>
+                <li class="liltd"><a href="javascript:;">报告</a></li>
+                <li><a ng-click="SetUp()"  class="fousze" href="javascript:;">设置</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container text-center itpptd">
+        <div><h3>添加门店</h3></div>
+        <div>门店 <input type="text"/></div>
+        <div>股东<input ng-click="addmontyd()" ng-model="holderman" type="text"/>
+        <div ng-show="myvar" class="ptdfposit">
+            <ul>
+                <li ng-click="addholderman('田万贵')">田万贵</li>
+                <li ng-click="addholderman('董勉')">董勉</li>
+                <li ng-click="addholderman('郭超逸')">郭超逸</li>
+            </ul>
+        </div>
+        </div>
+        <div class="latpd">
+            <input ng-click ="Exitshare()" class="font-twenty button-bg-1 citpdf litfd" type="button" value="取消"/>
+            <input class="font-twenty button-bg citpdf "type="submit"  value="提交"/>
+        </div>
+
+    </div>
+
+
+
+
+</div>

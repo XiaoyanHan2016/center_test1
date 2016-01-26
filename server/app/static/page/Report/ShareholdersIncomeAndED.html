@@ -1,0 +1,199 @@
+
+
+<div  ng-controller="Resport">
+    <div class="bg-header-color text-center font-twenty page-px" >
+        <div class="container replayt cotjdf">
+            <a class="claf " href="javascript:;">
+                中田财务收支明细
+            </a>
+            <a class="polat" href="javascript:;">退出</a>
+        </div>
+    </div>
+    <div class="backtd">
+        <div class="container cotjdf1">
+            <ul class="ultla">
+                <li><a ng-click="Accountent()"  href="javascript:;">入账</a></li>
+                <li  ng-click="Resport()"  class="fousze liltd"><a href="javascript:;">报告</a></li>
+                <li><a ng-click="SetUp()"  href="javascript:;">设置</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class=" martdgih">
+            <ul class="ulpatio">
+                <li ng-click="toggle()" >
+                    <label >{{holders||'股东1'}}</label>
+                    <ul ng-show="myVar1" class="ulptddr">
+                        <li ng-click="holders('股东1')">股东1</li>
+                        <li ng-click="holders('股东2')">股东2</li>
+                        <li ng-click="holders('股东3')">股东3</li>
+                    </ul>
+                </li>
+                <li ng-click="toggle1()" >
+                    <label >{{year1||'2015'}}</label>
+                    <ul ng-show="myVar1" class="ulptddr">
+                        <li ng-click="year('2012')">2012</li>
+                        <li ng-click="year('2013')">2013</li>
+                        <li ng-click="year('2015')">2015</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <script>
+
+
+        </script>
+
+    </div>
+    <div>
+        <div>
+            <!--  <table class="laitpda">
+                  <tr >
+                      <th width="50%">项目</th>
+                      <th>本月收支</th>
+                  </tr>
+                  <tr ng-repeat=" arraya in arraya1">
+                      <td ng-class="{'lbordr clapt latfont':{{arraya.classname}} }">{{arraya.name}}</td>
+                      <td><input type="number" ng-disabled="{{arraya.type}}" class="inputls" value='{{arraya.data}}'/></td>
+                  </tr>
+
+              </table>
+               <table class="laitpda">
+
+                  <tr><th>项目</th></tr>
+                  <tr><td>本年度</td></tr>
+                  <tr><td>本月收入</td></tr>
+                  <tr><td>本月退课</td></tr>
+                  <tr><td>健身费收入</td></tr>
+                  <tr><td>宿舍租金</td></tr>
+                  <tr><td>团购课收入</td></tr>
+                  <tr><td>其他收入费</td></tr>
+                  <tr><td>其他业务收入</td></tr>
+                  <tr><td>营业外收入</td></tr>
+                  <tr><td>总收入</td></tr>
+                  <tr><td>水电燃</td></tr>
+                  <tr><td>电话费</td></tr>
+                  <tr><td>运营费用</td></tr>
+                  <tr><td>房租物业费</td></tr>
+                  <tr><td>装修费用</td></tr>
+                  <tr><td>低值易耗品</td></tr>
+                  <tr><td>员工奖金</td></tr>
+                  <tr><td>员工工资</td></tr>
+                  <tr><td>交通费用</td></tr>
+                  <tr><td>业务宣传费</td></tr>
+                  <tr><td>固定资产折旧</td></tr>
+                  <tr><td>员工餐费</td></tr>
+                  <tr><td>差旅费</td></tr>
+                  <tr><td>开店成本分摊</td></tr>
+                  <tr><td>所有店支出合计</td></tr>
+                  <tr><td>水电燃</td></tr>
+                  <tr><td>电话费</td></tr>
+                  <tr><td>运营费用</td></tr>
+                  <tr><td>房租物业费</td></tr>
+                  <tr><td>装修费用</td></tr>
+                  <tr><td>低值易耗品</td></tr>
+                  <tr><td>员工奖金</td></tr>
+                  <tr><td>员工工资</td></tr>
+                  <tr><td>交通费</td></tr>
+                  <tr><td>河道管理费</td></tr>
+                  <tr><td>社会保险</td></tr>
+                  <tr><td>业务宣传费</td></tr>
+                  <tr><td>律师服务费</td></tr>
+                  <tr><td>固定资产折旧</td></tr>
+                  <tr><td>员工餐费</td></tr>
+                  <tr><td>差旅费</td></tr>
+                  <tr><td>印花税</td></tr>
+                  <tr><td>宿舍费用</td></tr>
+                  <tr><td>刷卡手续费分摊合计</td></tr>
+                  <tr><td>税金分摊合计</td></tr>
+                  <tr><td>其他支出分摊合计</td></tr>
+                  <tr><td>总店支出合计</td></tr>
+                  <tr><td>利润总额</td></tr>
+                  <tr><td>所得税</td></tr>
+                  <tr><td>净利润</td></tr>
+                  <tr><td>减：押金</td></tr>
+                  <tr><td>减：固定资产</td></tr>
+                  <tr><td>利润</td></tr>
+
+              </table>
+      -->
+            <ul class="ultpyl">
+                <li>
+                    <table class="laitpda">
+                        <tr><th>项目</th></tr>
+                        <tr><td class="latfont">本年度</td></tr>
+                        <tr><td class="latfont">本月收入</td></tr>
+                        <tr><td class="latfont">本月退课</td></tr>
+                        <tr><td class="latfont">以前年度</td></tr>
+                        <tr><td class="lbordr">健身费收入</td></tr>
+                        <tr><td class="latfont">宿舍租金（分摊）</td></tr>
+                        <tr><td class="latfont">团购课收入</td></tr>
+                        <tr><td class="latfont">其他收入费</td></tr>
+                        <tr><td>其他业务收入（分摊）</td></tr>
+                        <tr><td>营业外收入（分摊）</td></tr>
+                        <tr><td  class="latfont lbordr clapt">总收入</td></tr>
+                        <tr><td  class="latfont lbordr clapt"></td></tr>
+                        <tr><td>本年度</td></tr>
+                        <tr><td>本月收入</td></tr>
+                        <tr><td>本月退课</td></tr>
+                        <tr><td>以前年度</td></tr>
+                        <tr><td>健身费收入</td></tr>
+                        <tr><td>低值易耗品</td></tr>
+                        <tr><td>员工奖金</td></tr>
+                        <tr><td>员工工资</td></tr>
+                        <tr><td>交通费</td></tr>
+                        <tr><td>业务宣传费</td></tr>
+                        <tr><td>固定资产折旧</td></tr>
+                        <tr><td>员工餐费</td></tr>
+                        <tr><td>差旅费</td></tr>
+                        <tr><td>开店成本分摊</td></tr>
+                        <tr><td class="latfont lbordr clapt">本店支出合计</td></tr>
+                        <tr><td>水电燃</td></tr>
+                        <tr><td>电话费</td></tr>
+                        <tr><td>运营费用</td></tr>
+                        <tr><td>房租物业费</td></tr>
+                        <tr><td>装修费用</td></tr>
+                        <tr><td>低值易耗品</td></tr>
+                        <tr><td>员工奖金</td></tr>
+                        <tr><td>员工工资</td></tr>
+                        <tr><td>交通费</td></tr>
+                        <tr><td>河道管理费</td></tr>
+                        <tr><td>社会保险</td></tr>
+                        <tr><td>业务宣传费</td></tr>
+                        <tr><td>律师服务费</td></tr>
+                        <tr><td>固定资产折旧</td></tr>
+                        <tr><td>员工餐费</td></tr>
+                        <tr><td>差旅费</td></tr>
+                        <tr><td>印花税</td></tr>
+                        <tr><td>宿舍费用</td></tr>
+                        <tr><td>刷卡手续费分摊合计</td></tr>
+                        <tr><td>税金分摊合计</td></tr>
+                        <tr><td>其他支出分摊合计</td></tr>
+                        <tr><td class="latfont lbordr clapt">总店支出分摊合计</td></tr>
+                        <tr><td class="lbordr clapt">利润总额</td></tr>
+                        <tr><td>减：所得税(分摊）</td></tr>
+                        <tr><td class="lbordr clapt">净利润</td></tr>
+                        <tr><td>减：押金</td></tr>
+                        <tr><td>减：固定资产</td></tr>
+                        <tr><td class="lbordr clapt">利润</td></tr>
+                    </table>
+                </li>
+                <li>
+                    <table class="laitpda litbtd">
+                        <tr><th>{{yeartp}}</th></tr>
+                        <tr ng-repeat="data in datas">
+                            <td><input type="number" ng-disabled="{{data.type}}" name="{{data.name}}" class="inputls" value='{{data.value}}'/></td>
+
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+
+</div>
+

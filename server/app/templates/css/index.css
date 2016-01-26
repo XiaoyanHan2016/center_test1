@@ -1,0 +1,459 @@
+/*×ÖÌå*/
+*{font-family: arial,'microsoft yahei',sans-serif;}
+.font-rg
+{
+    font-size: 18px;
+}
+.font-twenty
+{
+    font-size: 20px;
+}
+.font-fity
+{
+    font-size: 25px;
+}
+.page-px
+{
+    padding: 18px 0;
+}
+.left-position{
+    float: left;
+}
+.right-position
+{
+    float:right;
+}
+/*±³¾°*/
+.bg-header-color
+{
+    background:rgb(45,53,66);
+    color:white;
+}
+.bg-color
+{
+    background:#c8edcc;
+}
+.button-bg{
+    background: #1e90ff;
+}
+/*°´Å¥*/
+.button-bg:hover,
+.button-bg:focus
+{
+    background: #1478da;
+}
+.button-bg-1{
+    background: #e3e3e3;
+}
+.button-bg-1:hover,
+.button-bg-1:focus
+{
+    background: #bfbfbf;
+}
+.button-bg-2{
+    background: #bddde0;
+}
+.button-bg-2:hover,
+.button-bg-2:focus
+{
+    background: #f4f4f4;
+}
+.button-bg-1[type="button"]
+{
+    border: 0px solid white;
+}
+.itpptd .citpdf
+{
+    width: 160px;
+    margin-top:30px;
+    margin-right: 12px;
+}
+.latpd
+{
+    padding-left: 25px;
+}
+.litfd
+{
+    margin-left: 30px;
+
+}
+.martdgih
+{
+    margin-top: 60px;
+
+}
+.itpptd  input[type="submit"]
+{
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+/*±ß¿ò*/
+.input-user
+{
+
+
+    width: 340px;
+    height: 60px;
+    margin-bottom:40px ;
+    position: relative;
+
+
+}
+.input-user:before
+{
+    content:"";
+    position: absolute;
+    width:23px;
+    height: 22px;
+    left: 26px;
+    top: 18px;
+
+}
+.input-user:nth-child(1):before
+{
+    background: url('../img/signin_icon_person.png') no-repeat;
+}
+.input-user:nth-child(2):before
+{
+    background: url('../img/signin_icon_password.png') no-repeat;
+}
+.input-user input
+{
+    height: 100%;
+    width: 100%;
+    padding:0px 60px ;
+    border-radius:2em ;
+    border: 1px solid rgb(170, 171, 170);
+    outline: none;
+    
+
+}
+input[type="submit"]
+{
+
+
+    border-radius:0.5em ;
+    border: 0px solid rgb(170, 171, 170);
+    outline: none;
+    color:white;
+
+
+}
+/*cssÑùÊ½*/
+.divclstt{
+    width: 340px;
+    padding-top:120px ;
+    margin: 0px auto;
+
+}
+body{
+   background: #c8edcc;
+}
+.claf
+{
+    float: left;
+
+}
+.polat
+{
+    float: right;
+    font-size: 18px;
+    padding: 0px 0px 0px 26px;
+    background: url('../img/icon_exit.png') no-repeat;
+}
+.replayt
+{
+    position: relative;
+
+}
+a,a:hover,a:active,a:link{color:inherit;text-decoration:none;}
+.cotjdf{
+    max-width:890px;
+}
+.cotjdf1{
+    max-width:990px;
+}
+.backtd{
+
+    background: rgb(245,245,245);
+    box-shadow: 0 1px 6px  rgb(165, 165, 165);
+    margin-bottom: 6px;
+}
+.ultla
+{
+    padding: 0;
+    margin: 0;
+
+}
+.ultla > li {
+    float: left;
+    width: 20%;
+    text-align: center;
+    list-style: none;
+    height: 60px;
+
+    line-height: 60px;
+    font-size: 20px;
+}
+.liltd{
+    margin: 0 18%;
+}
+li >a
+{
+    width:100%;
+    display: block;
+    height: 60px;
+    line-height: 60px;
+}
+a.fousze
+{
+    border-bottom: 4px solid #434c5d;
+}
+.ult-li
+{
+    margin: 25px auto;
+    width: 49%;
+    overflow: hidden;
+}
+.ult-li li
+{
+    list-style: none;
+    width: 150px;
+    height: 40px;
+    border:1px solid rgb(208,220,209);
+    margin-left: -1px;
+    float: left;
+    background: rgb(241, 241, 241);
+
+}
+.ult-li li a
+{
+
+    height: 100%;
+    line-height: 40px;
+    font-size: 16px;
+}
+.ptfotn
+{
+    margin-left: 8%;
+    margin-bottom:25px;
+}
+.litf
+{
+    border: 0;
+
+}
+.litf th
+{
+    background-color: rgb(148, 166, 168);
+    text-align: center;
+}
+.litf td
+{
+    text-align: center;
+}
+.litf tr:nth-child(odd)
+{
+    background-color: white;
+}
+.litf td div a
+{
+    color: rgb(0, 64, 255);
+}
+.fonse
+{
+    background: #bedde0;
+}
+.itpptd div
+{
+    margin: 25px 0;
+    font-size: 18px;
+}
+.itpptd input
+{
+    width: 340px;
+    height: 40px;
+    padding-left: 15px;
+}
+
+.ulptddr
+{
+    margin: -7px -1px;
+    padding: 0;
+    position: relative;
+
+
+
+}
+.ulptddr li
+{
+    float:left;
+    list-style-type: none;
+    width: 120px;
+    height: 30px;
+    border: 1px solid #cccccc;
+    background: white;
+    z-index: 2;
+    text-align: center;
+    line-height: 30px;
+    margin-top: -1px;
+
+}
+.ulptddr li:hover
+{
+    background: #cccccc;
+    cursor:pointer;
+}
+.ulpatio > li
+{
+    float:left;
+    list-style-type: none;
+    width: 120px;
+    height: 30px;
+    border: 1px solid #cccccc;
+    background: white;
+    z-index: 2;
+    text-align: center;
+    line-height: 30px;
+    margin: 20px 20px 20px 0px;
+    font-size: 16px;
+    position: relative;
+}
+.ulpatio > li label
+{
+    font-weight: inherit;
+}
+.ulpatio > li:nth-child(1)
+{
+    margin: 20px 40px 20px 10px;
+}
+.ulpatio > li:before
+{
+    background: url("../img/icon_big_arrow.png") no-repeat;
+    background-size:100% ;
+    width: 15px;
+    height: 15px;
+    right: 10px;
+    top:8px;
+    content: "";
+    position: absolute;
+
+
+}
+table.laitpda
+{
+    margin:0 auto 50px auto;
+    border-collapse: collapse;
+    border: none;
+    width: 100%;
+    cursor: default;
+
+}
+.laitpda td{
+    text-align: left;
+}
+.laitpda td,.laitpda th
+{
+    height: 24px;
+
+
+    border: 1px solid rgb(125,131,143);
+}
+.huit,.laitpda th
+{ text-align: center;
+    background: rgb(131,131,153);
+}
+.clapt {
+    background: white;
+}
+.lbordr
+{
+    font-weight: bold;
+}
+
+.laitpda .latfont
+{
+    text-align:center;
+}
+.inputls
+{
+    width: 100%;
+    height: 100%;
+    border: 0px solid;
+    text-align: center;
+
+}
+.ultpy
+{
+    width:1200px;
+    margin: 0 auto;
+}
+.ultpy li
+{
+    list-style: none;
+    width:50%;
+    margin: 0;
+    padding: 0;
+    float: left;
+
+}
+
+.ultpy li .litbtd
+{
+    margin-left: -1px;
+}
+.itpptd .ptdfposit
+{
+    width:376px;
+    margin: 0 auto;
+
+
+}
+
+.ptdfposit li
+{
+    list-style: none;
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-top: -1px;
+    background: white;
+}
+.ptdfposit li:hover
+{
+    background:#dddddd ;
+    cursor:pointer;
+}
+.ptdfposit ul
+{
+    margin-left: -4px;
+    position: absolute;
+    width: 380px;
+
+}
+.bultpoy
+{
+    background: #cccccc;
+}
+
+.ultpyl
+{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Í¼Ïñ*/
+
+
+
