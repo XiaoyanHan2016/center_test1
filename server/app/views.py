@@ -196,7 +196,7 @@ class LoginView(restful.Resource):
         #if not form.validate_on_submit():
         #    return form.errors, 422
 
-        print request.form['username']
+        #print request.form['username']
         user = User.query.filter(User.admin == 2).filter_by(username=request.form['username']).first()
         if user is None:
             return jsonify({'login':'fail'})
