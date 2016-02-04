@@ -2,9 +2,9 @@
 from flask import g,jsonify,request,Response
 from flask.ext import restful
 from server import api, db, flask_bcrypt, auth
-from models import User, Store, HeadAccount, BranchAccount
+from models import User, Store, HeadAccount, BranchAccount, UserLocked
 from forms import UserCreateForm, SessionCreateForm, StoreCreateForm, HeadCreateForm, BranchCreateForm
-from serializers import UserSchema, LoginSchema, StoreSchema, UsernameSchema, HeadSchema, BranchSchema, BranchYearSchema
+from serializers import UserSchema, LoginSchema, StoreSchema, UsernameSchema, HeadSchema, BranchSchema, BranchYearSchema, HeadYearSchema, UserLockedSchema
 from sqlalchemy import desc
 
 import string
@@ -42,21 +42,24 @@ def func1(a,b):
 
 def branch_update(year,month):
     branch = BranchAccount.query.filter_by(year=year).filter_by(month=month)
-    if branch is None:
-        return jsonify({'Post':'Error'})
+    if list(branch) == []:
+        return 0
     l1 = list(branch)
-    count = len(l1)
+    count = count_len(l1)
     head = HeadAccount.query.filter_by(year=year).filter_by(month=month).first()
     if head is not None:
         head_data = eval(head.data)
         for obj in l1:
+            if obj.locked == 1:
+                continue
             b = eval(obj.data)
-            b['A09'],b['A10'],b['A11'] = str(func1(eval(b['A09']),count)),str(func1(eval(b['A10']),count)),str(func1(eval(b['A11']),count))
-            for i in range(31,51):
-                b['A' + str(i)] = str(func1(eval(b['A' + str(i)]),count))
-            b['A54'],b['A56'],b['A57'] = str(func1(eval(b['A54']),count)),str(func1(eval(b['A56']),count)),str(func1(eval(b['A57']),count))
-            #branch_data['A09'] = round(float(head_data['A09']) / count,2)
-            data_str = data_cal(str(branch_data))
+            b['A09'],b['A10'],b['A11'] = str(func1(eval(head_data['A09']),count)),str(func1(eval(head_data['A10']),count)),str(func1(eval(head_data['A11']),count))
+            if check_branch(b):
+                for i in range(31,51):
+                    b['A' + str(i)] = str(func1(eval(head_data['A' + str(i)]),count))
+            b['A54'] = str(func1(eval(head_data['A54']),count))
+            data_str = data_cal(str(b))
+            obj.data = data_str
             db.session.add(obj)
             db.session.commit()
     return count
@@ -66,6 +69,7 @@ def data_cal(data):
     d1 = eval(data)
     d1['A04'] = str(round((eval(d1['A05']) + eval(d1['A06'])),2))
     d1['A08'] = str(round((eval(d1['A04']) + eval(d1['A07'])),2))
+    d1['A14'] = str(round((eval(d1['A08']) + eval(d1['A12']) + eval(d1['A13'])),2))
     d1['A30'] = str(dic_sum('A16','A29',d1))
     d1['A52'] = str(dic_sum('A31','A51',d1))
     d1['A53'] = str(round((eval(d1['A14']) - eval(d1['A30']) - eval(d1['A52'])),2))
@@ -76,6 +80,55 @@ def data_cal(data):
     str1 = sort_dic_str(d1)
     return str1
     
+#count the nonzero list
+def count_len(l1):
+    ct = 0
+    for obj in l1:
+        data = eval(obj.data)
+        for i in range(5,30):
+            if i < 10:
+                index = 'A0' + str(i)
+            else:
+                index = 'A' + str(i)
+            if float(data[index]) != 0:
+                ct += 1
+                break
+            else:
+                continue
+    return ct
+
+
+def check_branch(dic):
+    for i in range(5,30):
+        if i < 10:
+            index = 'A0' + str(i)
+        else:
+            index = 'A' + str(i)
+        if float(dic[index]) != 0:
+            return True
+        else:
+            continue
+    return False
+    
+def check_locked(l1):
+    for br in l1:
+        if br.locked == 0:
+            return False
+    return True
+        
+
+
+def get_alluser(l1):
+    li = []
+    for br in l1:
+        user_list = list(Store.query.filter_by(br.sid).first().users)
+        for user in user_list:
+            if user not in li:
+                li.append(user)
+    return li
+        
+
+
 #sum for a dic list
 def year_sum(list):
     _total = {}
@@ -114,7 +167,7 @@ def check_data(data_str):
     dic = eval(data_str)
     
     for s1 in dic.values():
-        if s1.replace(".", "", 1).isdigit() == False:
+        if s1.replace(".", "", 1).replace("-","",1).isdigit() == False:
             return False
     return True
 
@@ -161,6 +214,8 @@ class UserView(restful.Resource):
 class UserListView(restful.Resource):
     def get(self):
         users = User.query.filter(User.admin == 1).all()
+        if users == []:
+            return jsonify({'get':'fail'})
         schema = UserSchema(many = True)
         return Response(schema.dumps(users,indent=1).data,mimetype='application/json')
  #   @auth.login_required
@@ -178,7 +233,10 @@ class UserListView(restful.Resource):
         #if not form.validate_on_submit():
         #    return form.errors, 422
 
-        id = User.query.order_by(desc(User.uid)).first().uid + 1
+        if User.query.all() == []:
+            id = 1
+        else: 
+            id = User.query.order_by(desc(User.uid)).first().uid + 1
         user = User(uid=id,username=request.form['username'], mobile=request.form['mobile'], email=request.form['email'])
         schema = UserSchema()
         db.session.add(user)
@@ -228,6 +286,8 @@ class StoreView(restful.Resource):
         return jsonify({"get":"fail"})
 
     def put(self,sid):
+        print request.form['storename']
+        print request.form['holder']
         store = Store.query.filter_by(sid=sid).first()
         if store is None:
             return jsonify({'put':'fail'})
@@ -240,7 +300,7 @@ class StoreView(restful.Resource):
             return jsonify({'put':'fail'})
         user_list = request.form['holder'].split(',')
         
-        for i in userstore_list:
+        for i in user_list:
             store.users.append(User.query.filter_by(username=i).first())
             db.session.add(store)
             db.session.commit()
@@ -282,7 +342,10 @@ class StoreListView(restful.Resource):
         if Store.query.filter_by(storename=request.form['storename']).first() is not None:
             return jsonify({"post":"fail"})
         userstore_list = request.form['holder'].split(',')
-        id = Store.query.order_by(desc(Store.sid)).first().sid + 1
+        if Store.query.all() == []:
+            id = 1
+        else:
+            id = Store.query.order_by(desc(Store.sid)).first().sid + 1 
         if request.form['storename'] is None or request.form['holder'] is None:
             return jsonify({"post":"fail"})
         store = Store(sid=id,storename=request.form['storename'])
@@ -306,7 +369,9 @@ class StoreListView(restful.Resource):
 
 class BranchAccountView(restful.Resource):
     def get(self,sid,year,month):
-        branch = BranchAccount.query.filter_by(year=year).filter_by(month=month).filter_by(sid=sid).first_or_404()
+        print year
+        print month
+        branch = BranchAccount.query.filter_by(year=year).filter_by(month=month).filter_by(sid=sid).first()
         schema = BranchSchema()
 
         if branch is not None:
@@ -317,14 +382,18 @@ class BranchAccountView(restful.Resource):
         #print 'data------------>',request.json,'---->',request.form
         form = BranchCreateForm()
         print request.form['data']
+        print check_data(request.form['data'])
         if check_data(request.form['data']) == False:
             return jsonify({'post':'fail'})
-        id = BranchAccount.query.order_by(desc(BranchAccount.id)).first().id + 1
+        if BranchAccount.query.all() == []:
+            id = 1
+        else:
+            id = BranchAccount.query.order_by(desc(BranchAccount.id)).first().id + 1
 
         if BranchAccount.query.filter_by(year=year).filter_by(month=month).filter_by(sid=sid).first() is not None:
             return jsonify({'post':'fail'})
         data_after = data_cal(request.form['data'])
-        storename = Store.query.filter_by(sid=sid).first_or_404().storename
+        storename = Store.query.filter_by(sid=sid).first().storename
         branch = BranchAccount(id=id,year=year,month=month,data=data_after,storename=storename,sid=sid)
         db.session.add(branch)
         db.session.commit()
@@ -334,9 +403,11 @@ class BranchAccountView(restful.Resource):
         return jsonify({"post":"success"})
 
     def put(self,sid,year,month):
-        print request.form['data']
+        #print request.form['data']
         branch = BranchAccount.query.filter_by(year=year).filter_by(month=month).filter_by(sid=sid).first()
         if branch is None:
+            return jsonify({'put':'fail'})
+        if branch.locked == 1:
             return jsonify({'put':'fail'})
         branch.data = request.form['data']
         db.session.add(branch)
@@ -346,28 +417,47 @@ class BranchAccountView(restful.Resource):
 class BranchYearView(restful.Resource):
     def get(self,sid,year):
         storename = Store.query.filter_by(sid=sid).first_or_404().storename
-        branch = BranchAccount.query.filter_by(year=year).filter_by(storename=storename)
-        schema = BranchYearSchema(many=True)
-        branch_list = json.loads(schema.dumps(branch).data)
-        data_list = []
-        num = len(branch_list)
-        for i in range(0,num):
-            data_list.append(eval(branch_list[i]['data']))
+        branch = BranchAccount.query.filter_by(year=year).filter_by(storename=storename).all()
+        if branch != []:
+            schema = BranchYearSchema(many=True)
+            branch_list = json.loads(schema.dumps(branch).data)
+            data_list = []
+            num = len(branch_list)
+            for i in range(0,num):
+                data_list.append(eval(branch_list[i]['data']))
         
-        data = year_sum(data_list)        
-        dic = {'month':13,'data':str(data)}
+                data = year_sum(data_list)        
+                dic = {'month':13,'data':str(data)}
         
-        branch_list = map(lambda x:{'month':x['month'],'data':sort_dic_str(eval(x['data']))},branch_list)
-        branch_list.append(dic)
-        if branch is not None:
+            branch_list = map(lambda x:{'month':x['month'],'data':sort_dic_str(eval(x['data']))},branch_list)
+            branch_list.append(dic)
             return Response(schema.dumps(branch_list,sort_keys=True,indent=1).data,mimetype='application/json')
         else:
             return jsonify({'get':'fail'})
 
+class HeadYearView(restful.Resource):
+    def get(self,year):
+        head = HeadAccount.query.filter_by(year=year).all()
+        if head != []:
+            schema = HeadYearSchema(many=True)
+            head_list = json.loads(schema.dumps(head).data)
+            data_list = []
+            num = len(head_list)
+            for i in range(0,num):
+                data_list.append(eval(head_list[i]['data']))
+                data = year_sum(data_list)
+                dic = {'month':13,'data':str(data)}
+            head_list = map(lambda x:{'month':x['month'],'data':sort_dic_str(eval(x['data']))},head_list)
+            head_list.append(dic)
 
+            return Response(schema.dumps(head_list,sort_keys=True,indent=1).data,mimetype='application/json')
+        else:
+            return jsonify({'get':'fail'}) 
 class HeadAccountView(restful.Resource):
     def get(self,year,month):
-        head = HeadAccount.query.filter_by(year=year).filter_by(month=month).first_or_404()
+        print year
+        print month
+        head = HeadAccount.query.filter_by(year=year).filter_by(month=month).first()
         schema = HeadSchema()
          
         if head is not None:
@@ -383,7 +473,10 @@ class HeadAccountView(restful.Resource):
         print request.form['data']
         if check_data(request.form['data']) == False:
             return jsonify({'post':'fail'})
-        id = HeadAccount.query.order_by(desc(HeadAccount.id)).first().id + 1
+        if HeadAccount.query.all() == []:
+            id = 1
+        else: 
+            id = HeadAccount.query.order_by(desc(HeadAccount.id)).first().id + 1
         if HeadAccount.query.filter_by(year=year).filter_by(month=month).first() is not None:
             return jsonify({'post':'fail'})
         data_after = data_cal(request.form['data']) 
@@ -400,6 +493,7 @@ class HeadAccountView(restful.Resource):
         if head is None:
             return jsonify({'put':'fail'})
         head.data = request.form['data']
+        len = branch_update(year,month)
         db.session.add(head)
         db.session.commit()
         return jsonify({'put':'success'})
@@ -432,11 +526,11 @@ class AccountListView(restful.Resource):
 class AccountAllView(restful.Resource):
     def get(self,year):
         list1 = []
-        data_list = []
         data_list2 = []
         schema1 = BranchSchema(many=True)
         schema2 = HeadSchema()
         for i in range(0,12):
+            data_list = []
             month = i + 1
             branch = BranchAccount.query.filter_by(year=year).filter_by(month=month)
             head = HeadAccount.query.filter_by(year=year).filter_by(month=month).first()
@@ -446,8 +540,13 @@ class AccountAllView(restful.Resource):
                 num = len(branch_list)
                 for i in range(0,num):
                     data_list.append(eval(branch_list[i]['data']))
-                data_list.append(eval(head_list['data']))
+                #data_list.append(eval(head_list['data']))
                 data = year_sum(data_list)
+                d1 = eval(data)
+                d1['A56'] = str(round(float(d1['A56'])+float(eval(head_list['data'])['A56']),2))
+                d1['A57'] = str(round(float(d1['A57'])+float(eval(head_list['data'])['A57']),2))
+                d1['A58'] = str(round(float(d1['A58'])-float(eval(head_list['data'])['A56'])-float(eval(head_list['data'])['A57']),2))
+                data = str(d1)
                 data_sum = {'month':month,'data':data}                
                 list1.append(data_sum)
             else:
@@ -475,21 +574,27 @@ class AccountHolderView(restful.Resource):
 
         for i in range(0,12):
             month = i + 1
-            branch = BranchAccount.query.filter_by(year=year).filter_by(month=month).filter_by(sid=store[0].sid).first()
-            if branch is not None:
-                j = 0
-                data1 = []
-                while(j < len(store)):
-                    br = BranchAccount.query.filter_by(year=year).filter_by(month=month).filter_by(sid=store[j].sid).first()
-                    if br is None:
-                        j += 1
-                        continue
-                    data1.append(eval(br.data))
-                    j += 1
-                data1_sum = {'month':month,'data':str(year_sum(data1))}    
+            test = UserLocked.query.filter_by(uid=uid).filter_by(year=year).filter_by(month=month).first()
+            if test is not None:
+                schema=UserLockedSchema()
+                user_lock = schema.dumps(test,sort_keys=True).data
+                list1.append(user_lock)
             else:
-                continue
-            list1.append(data1_sum)
+                branch = BranchAccount.query.filter_by(year=year).filter_by(month=month).filter_by(sid=store[0].sid).first()
+                if branch is not None:
+                    j = 0
+                    data1 = []
+                    while(j < len(store)):
+                        br = BranchAccount.query.filter_by(year=year).filter_by(month=month).filter_by(sid=store[j].sid).first()
+                        if br is None:
+                            j += 1
+                            continue
+                        data1.append(eval(br.data))
+                        j += 1
+                    data1_sum = {'month':month,'data':str(year_sum(data1))}    
+                else:
+                    continue
+                list1.append(data1_sum)
         
         print list1
         num = len(list1)
@@ -500,7 +605,39 @@ class AccountHolderView(restful.Resource):
         list1.append(dic)
         return Response(json.dumps(list1,indent=1,sort_keys=True),mimetype='application/json')
         
+class LockView(restful.Resource):
+    def post(self,sid,year,month):
+        branch = BranchAccount.query.filter_by(year=year).filter_by(month=month).filter_by(sid=sid).first()
+        if branch is None:
+            return jsonify({'post':'fail'})
+        branch.locked = request.form['locked']
+        db.session.add(branch)
+        db.session.commit()
 
+        branch_list = BranchAccount.query.filter_by(year=year).filter_by(month=month).all()
+        if check_locked(branch_list) and UserLocked.query.filter_by(year=year).filter_by(month=month).all() == []:
+            user_list = get_alluser(branch_list)
+            for user in user_list:
+                store_list = list(user.stores)
+                j = 0
+                data1 = []
+                while(j < len(store)):
+                    br = BranchAccount.query.filter_by(year=year).filter_by(month=month).filter_by(sid=store[j].sid).first()
+                    if br is None:
+                        j += 1
+                        continue
+                    data1.append(eval(br.data))
+                    j += 1
+                if UserLocked.query.all() == []:
+                    id=1
+                else:
+                    id = UserLocked.query.order_by(desc(UserLocked.id)).first().id + 1
+                lock = LockView(id=id,uid=user.uid,year=year,month=month,data=str(year_sum(data1)))
+                db.session.add(lock)
+                db.session.commit()
+                
+         
+            
 
 
 api.add_resource(UserListView, '/api/v1/shareholder')
@@ -514,6 +651,7 @@ api.add_resource(AccountListView,'/api/v1/accountbook')
 api.add_resource(HeadAccountView,'/api/v1/headaccountbook/<int:year>/<int:month>')
 api.add_resource(BranchAccountView,'/api/v1/branchaccountbook/<int:sid>/<int:year>/<int:month>')
 api.add_resource(BranchYearView,'/api/v1/branchaccountbook/<int:sid>/<int:year>')
+api.add_resource(HeadYearView,'/api/v1/headaccountbook/<int:year>')
 api.add_resource(AccountAllView,'/api/v1/accountall/<int:year>')
 api.add_resource(AccountHolderView,'/api/v1/accountbook/<int:uid>/<int:year>')
-
+api.add_resource(LockView,'/api/v1/lock/<int:sid>/<int:year>/<int:month>')

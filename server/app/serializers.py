@@ -36,8 +36,17 @@ class BranchSchema(Schema):
     month = fields.Int()
     data = fields.Str()
     sid = fields.Int()
+    locked = fields.Int()
 class BranchYearSchema(Schema):
     month = fields.Int()
     data = fields.Str()    
-
+class HeadYearSchema(Schema):
+    month = fields.Int()
+    data = fields.Str()
       
+class UserLockedSchema(Schema):
+   # id = fields.Int()
+   # year = fields.Int()
+    month = fields.Int()
+   # uid = fields.Int()
+    data = fields.Str()

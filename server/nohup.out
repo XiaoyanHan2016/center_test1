@@ -1,0 +1,165 @@
+usage: run.py runserver [-h] [-t HOST] [-p PORT] [--threaded]
+                        [--processes PROCESSES] [--passthrough-errors] [-d]
+                        [-r]
+run.py runserver: error: argument --threaded: ignored explicit argument 'True'
+Traceback (most recent call last):
+  File "run.py", line 13, in <module>
+    manager.run(threaded=True)
+TypeError: run() got an unexpected keyword argument 'threaded'
+ * Running on http://192.168.1.31:5000/
+ * Restarting with reloader
+192.168.1.30 - - [02/Feb/2016 09:34:32] "GET /api/v1/branchaccountbook/USA/12/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 09:34:39] "POST /api/v1/login HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 09:34:39] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 09:34:42] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 09:34:44] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 09:35:43] "GET /api/v1/branchaccountbook/USA/12/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 09:35:48] "POST /api/v1/login HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 09:35:48] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 09:35:51] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 09:44:05] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.29 - - [02/Feb/2016 10:02:16] "POST /api/v1/login HTTP/1.1" 200 -
+192.168.1.29 - - [02/Feb/2016 10:02:16] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.29 - - [02/Feb/2016 10:02:19] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.29 - - [02/Feb/2016 10:02:29] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.29 - - [02/Feb/2016 10:02:29] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.29 - - [02/Feb/2016 10:02:35] "GET /api/v1/accountall/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:17:17] "POST /api/v1/login HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:17:17] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:17:22] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:17:22] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:17:23] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:17:25] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:17:25] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:17:28] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:17:30] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:25:04] "POST /api/v1/login HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:25:04] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:25:06] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:25:07] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:30:34] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:32:52] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:32:52] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:32:59] "GET /api/v1/branchaccountbook/1/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:33:01] "GET /api/v1/branchaccountbook/4/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:33:03] "GET /api/v1/branchaccountbook/4/2012 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:33:05] "GET /api/v1/branchaccountbook/4/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:33:06] "GET /api/v1/branchaccountbook/2/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:33:09] "GET /api/v1/branchaccountbook/8/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:33:11] "GET /api/v1/branchaccountbook/8/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:33:13] "GET /api/v1/branchaccountbook/8/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:33:20] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:33:21] "GET /api/v1/branchaccountbook/2/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:33:22] "GET /api/v1/branchaccountbook/3/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:33:24] "GET /api/v1/branchaccountbook/11/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:33:36] "GET /api/v1/branchaccountbook/11/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:34:00] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:34:00] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:34:13] "GET /api/v1/branchaccountbook/3/ HTTP/1.1" 404 -
+192.168.1.30 - - [02/Feb/2016 10:34:18] "GET /api/v1/branchaccountbook/3/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:34:18] "GET /api/v1/branchaccountbook/4/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:34:27] "GET /api/v1/accountall/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:34:31] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:34:31] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:34:31] "GET /api/v1/accountall/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:35:08] "GET /api/v1/accountall/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:35:09] "GET /api/v1/accountall/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:35:20] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:35:20] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:35:22] "GET /api/v1/accountall/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:36:07] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:36:26] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:36:26] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:36:29] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:36:29] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:37:48] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:38:18] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:38:19] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:38:28] "GET /api/v1/branchaccountbook/3/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:38:29] "GET /api/v1/branchaccountbook/6/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:38:32] "GET /api/v1/accountall/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:38:54] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:38:55] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:38:55] "GET /api/v1/accountall/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:39:05] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:39:06] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:39:10] "GET /api/v1/branchaccountbook/24/ HTTP/1.1" 404 -
+192.168.1.30 - - [02/Feb/2016 10:39:12] "GET /api/v1/accountall/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:39:21] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:39:21] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:39:24] "GET /api/v1/branchaccountbook/1/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:39:29] "GET /api/v1/branchaccountbook/1/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:39:31] "GET /api/v1/branchaccountbook/6/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:39:32] "GET /api/v1/branchaccountbook/9/2016 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:39:34] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:39:41] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:39:41] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:40:40] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:40:41] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:40:41] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:40:42] "GET /api/v1/accountall/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:49:06] "GET /api/v1/branchaccountbook/USA/12/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:49:12] "POST /api/v1/login HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:49:12] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:49:15] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:49:17] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:49:17] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 10:49:20] "GET /api/v1/accountall/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 11:01:54] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 11:01:55] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 11:01:55] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 11:01:57] "GET /api/v1/accountall/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 11:04:00] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 11:04:04] "GET /api/v1/branchaccountbook/1/2015/5 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 11:04:04] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 11:06:07] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 11:06:07] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 11:06:11] "GET /api/v1/accountall/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 14:23:44] "GET /api/v1/branchaccountbook/USA/12/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 14:23:51] "POST /api/v1/login HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 14:23:51] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 14:24:04] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 14:24:05] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 14:24:08] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 14:24:08] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 14:24:08] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 14:24:14] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 14:24:22] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 14:24:27] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 14:24:29] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 14:24:29] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 16:10:24] "GET /api/v1/branchaccountbook/USA/12/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 16:10:31] "POST /api/v1/login HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 16:10:31] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 16:10:52] "POST /api/v1/login HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 16:10:52] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 16:11:17] "POST /api/v1/login HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 16:11:17] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 16:11:20] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 16:12:11] "POST /api/v1/login HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 16:12:11] "GET /api/v1/shareholder HTTP/1.1" 200 -
+ * Detected change in '/home/flask_blog/center_test/server/app/models.py', reloading
+2015
+5
+ * Restarting with reloader
+ * Detected change in '/home/flask_blog/center_test/server/app/views.py', reloading
+ * Restarting with reloader
+ * Detected change in '/home/flask_blog/center_test/server/app/views.py', reloading
+ * Restarting with reloader
+192.168.1.30 - - [02/Feb/2016 17:39:01] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 17:39:15] "GET /api/v1/stores HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 17:45:50] "POST /api/v1/branchaccountbook/23/2015/9 HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 18:03:49] "GET /api/v1/branchaccountbook/USA/12/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 18:03:55] "POST /api/v1/login HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 18:03:55] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 18:03:58] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 18:17:51] "GET /api/v1/branchaccountbook/USA/12/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 18:17:58] "POST /api/v1/login HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 18:17:59] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 18:18:03] "GET /api/v1/accountbook HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 18:18:04] "GET /api/v1/shareholder HTTP/1.1" 200 -
+192.168.1.30 - - [02/Feb/2016 18:18:04] "GET /api/v1/branchaccountbook/1/2015 HTTP/1.1" 200 -
+ * Detected change in '/home/flask_blog/center_test/server/app/views.py', reloading
+{'A04':'0', 'A05':'4', 'A06':'0', 'A07':'0', 'A08':'0', 'A09':'0', 'A10':'0', 'A11':'0', 'A12':'0', 'A13':'0', 'A14':'0', 'A15':'0', 'A16':'0', 'A17':'1180.00', 'A18':'21740.39', 'A19':'0', 'A20':'0', 'A21':'0', 'A22':'0', 'A23':'0', 'A24':'115.00', 'A25':'0', 'A26':'0', 'A27':'299.00', 'A28':'0', 'A29':'0', 'A30':'0', 'A31':'0', 'A32':'0', 'A33':'0', 'A34':'0', 'A35':'0', 'A36':'0', 'A37':'0', 'A38':'0', 'A39':'0', 'A40':'0', 'A41':'0', 'A42':'0', 'A43':'0', 'A44':'0', 'A45':'0', 'A46':'0', 'A47':'0', 'A48':'0', 'A49':'0', 'A50':'0', 'A51':'0', 'A52':'0', 'A53':'0', 'A54':'0', 'A55':'0', 'A56':'55053.21', 'A57':'19690.00', 'A58':'0'}
+True
+ * Restarting with reloader

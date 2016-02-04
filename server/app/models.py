@@ -82,6 +82,22 @@ class BranchAccount(db.Model):
     data = db.Column(db.String(2096))
     storename = db.Column(db.String(256),nullable=False)
     sid = db.Column(db.Integer)
+    valid = db.Column(db.Integer,default=1)
+    locked = db.Column(db.Integer,default=0)
+    #tax = db.Column(db.String(32))
 
     def __repr__(self):
         return '<Branch %r %d %d>' % (self.storename,self.year,self.month)
+
+class UserLocked(db.Model):
+    __tablename__ = 'user_locked'
+    id = db.Column(db.Integer,primary_key=True)
+    uid = db.Column(db.Integer,nullable=False)
+    month = db.Column(db.Integer,nullable=False)
+    year = db.Column(db.Integer,nullable=False)
+    data = db.Column(db.String(2096))
+    def __repr__(self):
+        return '<UserLocked %d %d %d>' % (self.uid,self.year,self.month)
+
+
+
